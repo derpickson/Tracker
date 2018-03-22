@@ -1,4 +1,4 @@
-# project name
+    # project name
     project (com.github.derpickson.derpickson)
 
     # the oldest stable cmake version we support
