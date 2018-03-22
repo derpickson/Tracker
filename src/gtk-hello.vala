@@ -2,7 +2,7 @@ public class MyApp : Gtk.Application {
 
     public MyApp () {
         Object (
-            application_id: "com.github.yourusername.yourrepositoryname",
+            application_id: "com.github.derpickson.derpickson",
             flags: ApplicationFlags.FLAGS_NONE
         );
     }
