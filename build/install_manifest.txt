@@ -1,0 +1,3 @@
+/usr/bin/com.github.derpickson.derpickson
+/usr/share/applications/com.github.derpickson.derpickson.desktop
+/usr/share/metainfo/com.github.derpickson.derpickson.appdata.xml

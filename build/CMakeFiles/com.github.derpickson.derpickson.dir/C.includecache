@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/nick/Projects/derpickson/build/src/gtk-hello.c
+glib.h
+-
+glib-object.h
+-
+gtk/gtk.h
+-
+gio/gio.h
+-
+stdlib.h
+-
+string.h
+-
+

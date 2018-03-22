@@ -1,0 +1,7 @@
+/home/nick/Projects/derpickson/build/CMakeFiles/install.dir
+/home/nick/Projects/derpickson/build/CMakeFiles/list_install_components.dir
+/home/nick/Projects/derpickson/build/CMakeFiles/rebuild_cache.dir
+/home/nick/Projects/derpickson/build/CMakeFiles/com.github.derpickson.derpickson.dir
+/home/nick/Projects/derpickson/build/CMakeFiles/install/strip.dir
+/home/nick/Projects/derpickson/build/CMakeFiles/install/local.dir
+/home/nick/Projects/derpickson/build/CMakeFiles/edit_cache.dir
