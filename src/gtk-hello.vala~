@@ -1,26 +1,47 @@
+//#include <config.h>;
+//#define  _(String) ((char *) g_dgettext (GETTEXT_PACKAGE, String))
+
 public class MyApp : Gtk.Application {
 
     public MyApp () {
         Object (
-            application_id: "com.github.derpickson.derpickson",
+            application_id: ("com.github.derpickson.derpickson"),
             flags: ApplicationFlags.FLAGS_NONE
         );
     }
 
     protected override void activate () {
-        var button_hello = new Gtk.Button.with_label ("Click me!");
+        /*var button_hello = new Gtk.Button.with_label _("Click me!");
         button_hello.margin = 12;
         button_hello.clicked.connect (() => {
-            button_hello.label = "Hello World!";
+            button_hello.label = _("Hello World!");
             button_hello.sensitive = false;
         });
-        var label = new Gtk.Label ("Hello Again World!");
+        var label = new Gtk.Label _("Hello Again World!");
         var main_window = new Gtk.ApplicationWindow (this);
         main_window.default_height = 300;
         main_window.default_width = 300;
-        main_window.title = "Hello World";
+        main_window.title = _("Hello World");
         main_window.add (button_hello);
-        main_window.add (label);
+        main_window.add (label);*/
+        var grid = new Gtk.Grid ();
+        grid.orientation = Gtk.Orientation.VERTICAL;
+        grid.row_spacing = 6;
+        var button = new Gtk.Button.with_label (_("Click Me!"));
+        var label = new Gtk.Label (null);
+        grid.add (button);
+        grid.add (label);
+        //grid.add (new Gtk.Label (_("Label 1")));
+        //grid.add (new Gtk.Label (_("Label 2")));
+        var main_window = new Gtk.ApplicationWindow (this);
+        main_window.default_height = 300;
+        main_window.default_width = 300;
+        main_window.title = (_("Hello World"));
+        main_window.add (grid);
+        button.clicked.connect (() => {
+            label.label = (_("Hello World! Testing workflow"));
+            button.sensitive = false;
+        });
         main_window.show_all ();
     }
 

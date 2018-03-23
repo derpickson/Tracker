@@ -15,6 +15,12 @@ gtk/gtk.h
 -
 gio/gio.h
 -
+glib/gi18n-lib.h
+-
+float.h
+-
+math.h
+-
 stdlib.h
 -
 string.h
