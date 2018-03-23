@@ -5,3 +5,12 @@
 /home/nick/Projects/derpickson/build/CMakeFiles/install/strip.dir
 /home/nick/Projects/derpickson/build/CMakeFiles/install/local.dir
 /home/nick/Projects/derpickson/build/CMakeFiles/edit_cache.dir
+/home/nick/Projects/derpickson/build/po/CMakeFiles/rebuild_cache.dir
+/home/nick/Projects/derpickson/build/po/CMakeFiles/edit_cache.dir
+/home/nick/Projects/derpickson/build/po/CMakeFiles/po.dir
+/home/nick/Projects/derpickson/build/po/CMakeFiles/install.dir
+/home/nick/Projects/derpickson/build/po/CMakeFiles/list_install_components.dir
+/home/nick/Projects/derpickson/build/po/CMakeFiles/i18n.dir
+/home/nick/Projects/derpickson/build/po/CMakeFiles/pot.dir
+/home/nick/Projects/derpickson/build/po/CMakeFiles/install/local.dir
+/home/nick/Projects/derpickson/build/po/CMakeFiles/install/strip.dir
