@@ -1,11 +1,12 @@
 [Desktop Entry]
 Name=Tracker
-GenericName=Hello World App
-Comment=Proves that we can use Vala and Gtk
+GenericName=Tracker App
+Comment=Time tracking application for freelance developers.
 Categories=Utility;Education;
 Exec=com.github.derpickson.derpickson
 Icon=application-default-icon
 Terminal=false
 Type=Application
-X-GNOME-Gettext-Domain=hello-again
-Keywords=Hello;World;Example;
+X-GNOME-Gettext-Domain=tracker
+Keywords=Tracker;Time;Freelance;Stopwatch;Developer;Development
+X-GNOME-UsesNotifications=true
