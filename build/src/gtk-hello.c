@@ -41,7 +41,6 @@ struct _Block1Data {
 	int _ref_count_;
 	MyApp* self;
 	GtkButton* button;
-	GtkLabel* label;
 	GtkButton* rotate_button;
 	GtkLabel* rotate_label;
 };
@@ -71,14 +70,14 @@ MyApp* my_app_construct (GType object_type) {
 	self = (MyApp*) g_object_new (object_type, "application-id", "com.github.derpickson.derpickson", "flags", G_APPLICATION_FLAGS_NONE, NULL);
 #line 6 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	return self;
-#line 75 "gtk-hello.c"
+#line 74 "gtk-hello.c"
 }
 
 
 MyApp* my_app_new (void) {
 #line 6 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	return my_app_construct (TYPE_MY_APP);
-#line 82 "gtk-hello.c"
+#line 81 "gtk-hello.c"
 }
 
 
@@ -87,7 +86,7 @@ static Block1Data* block1_data_ref (Block1Data* _data1_) {
 	g_atomic_int_inc (&_data1_->_ref_count_);
 #line 13 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	return _data1_;
-#line 91 "gtk-hello.c"
+#line 90 "gtk-hello.c"
 }
 
 
@@ -96,7 +95,7 @@ static void block1_data_unref (void * _userdata_) {
 	_data1_ = (Block1Data*) _userdata_;
 #line 13 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	if (g_atomic_int_dec_and_test (&_data1_->_ref_count_)) {
-#line 100 "gtk-hello.c"
+#line 99 "gtk-hello.c"
 		MyApp* self;
 #line 13 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 		self = _data1_->self;
@@ -105,34 +104,52 @@ static void block1_data_unref (void * _userdata_) {
 #line 13 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 		_g_object_unref0 (_data1_->rotate_button);
 #line 13 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
-		_g_object_unref0 (_data1_->label);
-#line 13 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 		_g_object_unref0 (_data1_->button);
 #line 13 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 		_g_object_unref0 (self);
 #line 13 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 		g_slice_free (Block1Data, _data1_);
-#line 116 "gtk-hello.c"
+#line 113 "gtk-hello.c"
 	}
 }
 
 
 static void __lambda4_ (Block1Data* _data1_) {
 	MyApp* self;
+	GNotification* notification = NULL;
+	GNotification* _tmp0_;
+	GThemedIcon* icon = NULL;
+	GThemedIcon* _tmp1_;
 #line 49 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	self = _data1_->self;
-#line 50 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
-	gtk_label_set_label (_data1_->label, _ ("Hello World! Testing length"));
 #line 51 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
-	gtk_widget_set_sensitive ((GtkWidget*) _data1_->button, FALSE);
-#line 129 "gtk-hello.c"
+	_tmp0_ = g_notification_new (_ ("Tracker"));
+#line 51 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+	notification = _tmp0_;
+#line 52 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+	_tmp1_ = (GThemedIcon*) g_themed_icon_new ("dialog-warning");
+#line 52 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+	icon = _tmp1_;
+#line 53 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+	g_notification_set_icon (notification, (GIcon*) icon);
+#line 54 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+	g_notification_set_body (notification, _ ("Times up, fool!"));
+#line 55 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+	g_application_send_notification ((GApplication*) self, "Tracker", notification);
+#line 56 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+	gtk_widget_set_sensitive ((GtkWidget*) _data1_->button, TRUE);
+#line 49 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+	_g_object_unref0 (icon);
+#line 49 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+	_g_object_unref0 (notification);
+#line 146 "gtk-hello.c"
 }
 
 
 static void ___lambda4__gtk_button_clicked (GtkButton* _sender, gpointer self) {
 #line 49 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	__lambda4_ (self);
-#line 136 "gtk-hello.c"
+#line 153 "gtk-hello.c"
 }
 
 
@@ -140,26 +157,26 @@ static void __lambda5_ (Block1Data* _data1_) {
 	MyApp* self;
 	gdouble _tmp0_;
 	gdouble _tmp1_;
-#line 54 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+#line 59 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	self = _data1_->self;
-#line 55 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+#line 60 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	_tmp0_ = gtk_label_get_angle (_data1_->rotate_label);
-#line 55 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+#line 60 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	_tmp1_ = _tmp0_;
-#line 55 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+#line 60 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	gtk_label_set_angle (_data1_->rotate_label, _tmp1_ + 45);
-#line 56 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+#line 61 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	gtk_label_set_label (_data1_->rotate_label, _ ("Vertical"));
-#line 57 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+#line 62 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	gtk_widget_set_sensitive ((GtkWidget*) _data1_->rotate_button, TRUE);
-#line 156 "gtk-hello.c"
+#line 173 "gtk-hello.c"
 }
 
 
 static void ___lambda5__gtk_button_clicked (GtkButton* _sender, gpointer self) {
-#line 54 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+#line 59 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	__lambda5_ (self);
-#line 163 "gtk-hello.c"
+#line 180 "gtk-hello.c"
 }
 
 
@@ -169,6 +186,7 @@ static void my_app_real_activate (GApplication* base) {
 	GtkGrid* grid = NULL;
 	GtkGrid* _tmp0_;
 	GtkButton* _tmp1_;
+	GtkLabel* label = NULL;
 	GtkLabel* _tmp2_;
 	GtkButton* _tmp3_;
 	GtkLabel* _tmp4_;
@@ -205,7 +223,7 @@ static void my_app_real_activate (GApplication* base) {
 #line 33 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	g_object_ref_sink (_tmp2_);
 #line 33 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
-	_data1_->label = _tmp2_;
+	label = _tmp2_;
 #line 34 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	_tmp3_ = (GtkButton*) gtk_button_new_with_label (_ ("Rotate"));
 #line 34 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
@@ -221,7 +239,7 @@ static void my_app_real_activate (GApplication* base) {
 #line 36 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	gtk_grid_attach (grid, (GtkWidget*) _data1_->button, 0, 0, 1, 1);
 #line 37 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
-	gtk_grid_attach_next_to (grid, (GtkWidget*) _data1_->label, (GtkWidget*) _data1_->button, GTK_POS_RIGHT, 1, 1);
+	gtk_grid_attach_next_to (grid, (GtkWidget*) label, (GtkWidget*) _data1_->button, GTK_POS_RIGHT, 1, 1);
 #line 38 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	gtk_grid_attach (grid, (GtkWidget*) _data1_->rotate_button, 0, 1, 1, 1);
 #line 39 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
@@ -242,21 +260,23 @@ static void my_app_real_activate (GApplication* base) {
 	gtk_container_add ((GtkContainer*) main_window, (GtkWidget*) grid);
 #line 49 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	g_signal_connect_data (_data1_->button, "clicked", (GCallback) ___lambda4__gtk_button_clicked, block1_data_ref (_data1_), (GClosureNotify) block1_data_unref, 0);
-#line 53 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+#line 58 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	gtk_label_set_angle (_data1_->rotate_label, (gdouble) 0);
-#line 54 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
-	g_signal_connect_data (_data1_->rotate_button, "clicked", (GCallback) ___lambda5__gtk_button_clicked, block1_data_ref (_data1_), (GClosureNotify) block1_data_unref, 0);
 #line 59 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+	g_signal_connect_data (_data1_->rotate_button, "clicked", (GCallback) ___lambda5__gtk_button_clicked, block1_data_ref (_data1_), (GClosureNotify) block1_data_unref, 0);
+#line 64 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	gtk_widget_show_all ((GtkWidget*) main_window);
 #line 13 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	_g_object_unref0 (main_window);
+#line 13 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+	_g_object_unref0 (label);
 #line 13 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	_g_object_unref0 (grid);
 #line 13 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	block1_data_unref (_data1_);
 #line 13 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	_data1_ = NULL;
-#line 260 "gtk-hello.c"
+#line 280 "gtk-hello.c"
 }
 
 
@@ -267,23 +287,23 @@ gint my_app_main (gchar** args, int args_length1) {
 	gchar** _tmp1_;
 	gint _tmp1__length1;
 	gint _tmp2_;
-#line 63 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+#line 68 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	_tmp0_ = my_app_new ();
-#line 63 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+#line 68 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	app = _tmp0_;
-#line 64 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+#line 69 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	_tmp1_ = args;
-#line 64 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+#line 69 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	_tmp1__length1 = args_length1;
-#line 64 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+#line 69 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	_tmp2_ = g_application_run ((GApplication*) app, _tmp1__length1, _tmp1_);
-#line 64 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+#line 69 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	result = _tmp2_;
-#line 64 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+#line 69 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	_g_object_unref0 (app);
-#line 64 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+#line 69 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	return result;
-#line 287 "gtk-hello.c"
+#line 307 "gtk-hello.c"
 }
 
 
@@ -291,9 +311,9 @@ int main (int argc, char ** argv) {
 #if !GLIB_CHECK_VERSION (2,35,0)
 	g_type_init ();
 #endif
-#line 62 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
+#line 67 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	return my_app_main (argv, argc);
-#line 297 "gtk-hello.c"
+#line 317 "gtk-hello.c"
 }
 
 
@@ -302,7 +322,7 @@ static void my_app_class_init (MyAppClass * klass) {
 	my_app_parent_class = g_type_class_peek_parent (klass);
 #line 4 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	((GApplicationClass *) klass)->activate = (void (*) (GApplication *)) my_app_real_activate;
-#line 306 "gtk-hello.c"
+#line 326 "gtk-hello.c"
 }
 
 

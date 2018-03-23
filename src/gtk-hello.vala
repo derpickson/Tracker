@@ -47,8 +47,13 @@ public class MyApp : Gtk.Application {
         main_window.title = (_("Derpickson"));
         main_window.add (grid);
         button.clicked.connect (() => {
-            label.label = (_("Hello World! Testing length"));
-            button.sensitive = false;
+            //label.label = (_("Hello World! Testing length"));
+            var notification = new Notification (_("Tracker"));
+            var icon = new GLib.ThemedIcon ("dialog-warning");
+            notification.set_icon (icon);
+            notification.set_body (_("Times up, fool!"));
+            this.send_notification ("Tracker", notification);
+            button.sensitive = true;
         });
         rotate_label.angle = 0;
         rotate_button.clicked.connect(() => {
