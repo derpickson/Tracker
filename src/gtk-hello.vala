@@ -31,35 +31,48 @@ public class MyApp : Gtk.Application {
     }
 
     protected override void activate () {
-        /*var button_hello = new Gtk.Button.with_label _("Click me!");
-        button_hello.margin = 12;
-        button_hello.clicked.connect (() => {
-            button_hello.label = _("Hello World!");
-            button_hello.sensitive = false;
-        });
-        var label = new Gtk.Label _("Hello Again World!");
         var main_window = new Gtk.ApplicationWindow (this);
-        main_window.default_height = 300;
-        main_window.default_width = 300;
-        main_window.title = _("Hello World");
-        main_window.add (button_hello);
-        main_window.add (label);*/
-
         var grid = new Gtk.Grid ();
+        var button_timestart = new Gtk.Button.with_label (_("Start Time"));
+        var button_timestop = new Gtk.Button.with_label (_("Stop Time"));
+        
+        Gtk.ListStore list_store = new Gtk.ListStore(2, typeof (string), typeof (string));
+        Gtk.TreeIter iter;
+        Gtk.TreeView view = new Gtk.TreeView.with_model (list_store);
+        Gtk.CellRendererText cell = new Gtk.CellRendererText ();
+        view.insert_column_with_attributes (-1, "First", cell, "text", 0);
+        view.insert_column_with_attributes (-1, "Second", cell, "text", 1);
+
+        list_store.append (out iter);
+        list_store.set (iter, 0, "What", 1, "What2");
+        list_store.append (out iter);
+        list_store.set (iter, 0, "What", 1, "What2");
+        button_timestop.sensitive = false;
+        button_timestart.clicked.connect (() => {
+            //button_timestart.label = (_("Time Started"));
+            button_timestart.sensitive = false;
+            button_timestop.sensitive = true;
+        });
+        button_timestop.clicked.connect (() => {
+            button_timestart.sensitive = true;
+            button_timestop.sensitive = false;
+        });
+
         //grid.orientation = Gtk.Orientation.VERTICAL;
         grid.row_spacing = 6;
         grid.column_spacing = 6;
         grid.margin = 12;
-        var title_label = new Gtk.Label (_("Tracker"));
-        Gtk.ListStore list_store = new Gtk.ListStore(2, typeof (string), typeof (int));
-        Gtk.TreeIter iter;
-        list_store.append (out iter);
-        list_store.set (iter, 0, "What", 1, 1);
-        Gtk.TreeView view = new Gtk.TreeView.with_model (list_store);
-        grid.add (view);
-        Gtk.CellRendererText cell = new Gtk.CellRendererText ();
-        view.insert_column_with_attributes (-1, "First", cell, "text", 0);
-        view.insert_column_with_attributes (-1, "Second", cell, "text", 1);
+
+        grid.attach (view, 0, 0, 4, 1);
+        grid.attach (button_timestart, 0, 1, 2, 1);
+        grid.attach (button_timestop, 2, 1, 2, 1);
+        
+        main_window.default_height = 300;
+        main_window.default_width = 300;
+        main_window.title = (_("Tracker"));
+        main_window.add (grid);
+        main_window.show_all ();
+
         //var time
         //public void set_alignment (1, 0);
         //title_label.set_markup(wrapInTags(post.title));
@@ -89,21 +102,13 @@ public class MyApp : Gtk.Application {
             notification.set_body (_("Times up, fool!"));
             this.send_notification ("Tracker", notification);
             button.sensitive = true;
-        });*/
-
-        /*rotate_label.angle = 0;
+        });
+        rotate_label.angle = 0;
         rotate_button.clicked.connect(() => {
             rotate_label.angle += 45;
             rotate_label.label = (_("Vertical"));
             rotate_button.sensitive = true;
         });*/
-        var main_window = new Gtk.ApplicationWindow (this);
-        main_window.default_height = 300;
-        main_window.default_width = 300;
-        main_window.title = (_("Tracker"));
-        main_window.add (grid);
-        //main_window.add(view);
-        main_window.show_all ();
     }
 
     public static int main (string[] args) {

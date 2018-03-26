@@ -21,6 +21,8 @@
 
 public class MyApp : Gtk.Application {
 
+    public Pango.Alignment align {get;set;}
+    public bool justify {get;set;}
     public MyApp () {
         Object (
             application_id: ("com.github.derpickson.derpickson"),
@@ -42,12 +44,32 @@ public class MyApp : Gtk.Application {
         main_window.title = _("Hello World");
         main_window.add (button_hello);
         main_window.add (label);*/
+
         var grid = new Gtk.Grid ();
         //grid.orientation = Gtk.Orientation.VERTICAL;
         grid.row_spacing = 6;
         grid.column_spacing = 6;
         grid.margin = 12;
-        var button = new Gtk.Button.with_label (_("Click Me!"));
+        var title_label = new Gtk.Label (_("Tracker"));
+        Gtk.ListStore list_store = new Gtk.ListStore(2, typeof (string), typeof (int));
+        Gtk.TreeIter iter;
+        list_store.append (out iter);
+        list_store.set (iter, 0, "What", 1, 1);
+        Gtk.TreeView view = new Gtk.TreeView.with_model (list_store);
+        grid.add (view);
+        Gtk.CellRendererText cell = new Gtk.CellRendererText ();
+        view.insert_column_with_attributes (-1, "First", cell, "text", 0);
+        view.insert_column_with_attributes (-1, "Second", cell, "text", 1);
+        //var time
+        //public void set_alignment (1, 0);
+        //title_label.set_markup(wrapInTags(post.title));
+        //title_label.set_line_wrap(true);
+        //title_label.wrap_mode = Pango.WrapMode.WORD_CHAR;
+        //title_label.set_justify = Pango.Layout.set_justify(CENTER);
+        //title_label.set_justify(Gtk.Justification.RIGHT);
+        //title_label.set_xalign(0);
+        //grid.attach (title_label, 0, 0, 1, 1);
+        /*var button = new Gtk.Button.with_label (_("Click Me!"));
         var label = new Gtk.Label (null);
         var rotate_button = new Gtk.Button.with_label (_("Rotate"));
         var rotate_label = new Gtk.Label (_("Horizontal"));
@@ -59,11 +81,6 @@ public class MyApp : Gtk.Application {
         //grid.add (label);
         //grid.add (new Gtk.Label (_("Label 1")));
         //grid.add (new Gtk.Label (_("Label 2")));
-        var main_window = new Gtk.ApplicationWindow (this);
-        main_window.default_height = 300;
-        main_window.default_width = 300;
-        main_window.title = (_("Derpickson"));
-        main_window.add (grid);
         button.clicked.connect (() => {
             //label.label = (_("Hello World! Testing length"));
             var notification = new Notification (_("Tracker"));
@@ -72,13 +89,20 @@ public class MyApp : Gtk.Application {
             notification.set_body (_("Times up, fool!"));
             this.send_notification ("Tracker", notification);
             button.sensitive = true;
-        });
-        rotate_label.angle = 0;
+        });*/
+
+        /*rotate_label.angle = 0;
         rotate_button.clicked.connect(() => {
             rotate_label.angle += 45;
             rotate_label.label = (_("Vertical"));
             rotate_button.sensitive = true;
-        });
+        });*/
+        var main_window = new Gtk.ApplicationWindow (this);
+        main_window.default_height = 300;
+        main_window.default_width = 300;
+        main_window.title = (_("Tracker"));
+        main_window.add (grid);
+        //main_window.add(view);
         main_window.show_all ();
     }
 
