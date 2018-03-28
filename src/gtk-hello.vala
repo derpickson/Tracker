@@ -35,10 +35,13 @@ public class MyApp : Gtk.Application {
         var grid = new Gtk.Grid ();
         var button_timestart = new Gtk.Button.with_label (_("Start Time"));
         var button_timestop = new Gtk.Button.with_label (_("Stop Time"));
+        var button_addtask = new Gtk.Button.with_label (_("Add New Task"));
+        var button_addsubtask = new Gtk.Button.with_label (_("Add New Subtask"));
         
         Gtk.ListStore list_store = new Gtk.ListStore(2, typeof (string), typeof (string));
         Gtk.TreeIter iter;
         Gtk.TreeView view = new Gtk.TreeView.with_model (list_store);
+        view.expand = true;
         Gtk.CellRendererText cell = new Gtk.CellRendererText ();
         view.insert_column_with_attributes (-1, "First", cell, "text", 0);
         view.insert_column_with_attributes (-1, "Second", cell, "text", 1);
@@ -63,9 +66,11 @@ public class MyApp : Gtk.Application {
         grid.column_spacing = 6;
         grid.margin = 12;
 
-        grid.attach (view, 0, 0, 4, 1);
-        grid.attach (button_timestart, 0, 1, 2, 1);
-        grid.attach (button_timestop, 2, 1, 2, 1);
+        grid.attach (view, 0, 1, 9, 1);
+        grid.attach (button_timestart, 0, 0, 2, 1);
+        grid.attach (button_timestop, 2, 0, 2, 1);
+        grid.attach (button_addtask, 4, 0, 2, 1);
+        grid.attach (button_addsubtask, 6, 0, 2, 1);
         
         main_window.default_height = 300;
         main_window.default_width = 300;
