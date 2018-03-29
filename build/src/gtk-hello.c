@@ -300,7 +300,7 @@ static void my_app_real_activate (GApplication* base) {
 #line 67 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	g_object_set ((GtkWidget*) grid, "margin", 12, NULL);
 #line 69 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
-	gtk_grid_attach (grid, (GtkWidget*) view, 0, 1, 9, 1);
+	gtk_grid_attach (grid, (GtkWidget*) view, 0, 1, 8, 1);
 #line 70 "/home/nick/Projects/derpickson/src/gtk-hello.vala"
 	gtk_grid_attach (grid, (GtkWidget*) _data1_->button_timestart, 0, 0, 2, 1);
 #line 71 "/home/nick/Projects/derpickson/src/gtk-hello.vala"

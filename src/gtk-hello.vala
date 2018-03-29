@@ -66,7 +66,7 @@ public class MyApp : Gtk.Application {
         grid.column_spacing = 6;
         grid.margin = 12;
 
-        grid.attach (view, 0, 1, 9, 1);
+        grid.attach (view, 0, 1, 8, 1);
         grid.attach (button_timestart, 0, 0, 2, 1);
         grid.attach (button_timestop, 2, 0, 2, 1);
         grid.attach (button_addtask, 4, 0, 2, 1);
