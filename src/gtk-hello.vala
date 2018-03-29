@@ -37,19 +37,26 @@ public class MyApp : Gtk.Application {
         var button_timestop = new Gtk.Button.with_label (_("Stop Time"));
         var button_addtask = new Gtk.Button.with_label (_("Add New Task"));
         var button_addsubtask = new Gtk.Button.with_label (_("Add New Subtask"));
+        var button_delete = new Gtk.Button.with_label (_("Delete"));
         
-        Gtk.ListStore list_store = new Gtk.ListStore(2, typeof (string), typeof (string));
+        Gtk.ListStore list_store = new Gtk.ListStore(3, typeof (string), typeof (string), typeof(string));
         Gtk.TreeIter iter;
         Gtk.TreeView view = new Gtk.TreeView.with_model (list_store);
         view.expand = true;
+        //view.set_resizeable = true;
+        //view.columns_autosize = true;
         Gtk.CellRendererText cell = new Gtk.CellRendererText ();
-        view.insert_column_with_attributes (-1, "First", cell, "text", 0);
-        view.insert_column_with_attributes (-1, "Second", cell, "text", 1);
+        view.insert_column_with_attributes (-1, "Main Task", cell, "text", 0);
+        view.insert_column_with_attributes (-1, "Sub-task", cell, "text", 1);
+        view.insert_column_with_attributes (-1, "Time", cell, "text", 2);
+        view.get_column (0).min_width = 75;
+        view.get_column (1).min_width = 100;
 
         list_store.append (out iter);
-        list_store.set (iter, 0, "What", 1, "What2");
+        list_store.set (iter, 0, "Create Tracker App", 1, "", 2, "");
         list_store.append (out iter);
-        list_store.set (iter, 0, "What", 1, "What2");
+        list_store.set (iter, 0, "", 1, "Code GUI", 2, "1m 50s");
+        //list_store.set (iter, 0, "Create Tracker App", 1, "Code", 2, "a");
         button_timestop.sensitive = false;
         button_timestart.clicked.connect (() => {
             //button_timestart.label = (_("Time Started"));
@@ -60,17 +67,30 @@ public class MyApp : Gtk.Application {
             button_timestart.sensitive = true;
             button_timestop.sensitive = false;
         });
-
+        button_addtask.clicked.connect (() => {
+            //Gtk.Entry entry = new Gtk.Entry ();
+            //main_window.add (entry);
+            //entry.set_text (_("Input Task Name"));
+            list_store.append (out iter);
+            list_store.set (iter, 0, "Task1");
+        });
+        button_addsubtask.clicked.connect (() => {
+            var name = "name";
+            //view.get_selection().changed.connect (name);
+            list_store.append (out iter);
+            list_store.set (iter, 1, name);
+        });
         //grid.orientation = Gtk.Orientation.VERTICAL;
         grid.row_spacing = 6;
         grid.column_spacing = 6;
         grid.margin = 12;
 
-        grid.attach (view, 0, 1, 8, 1);
+        grid.attach (view, 0, 1, 10, 1);
         grid.attach (button_timestart, 0, 0, 2, 1);
         grid.attach (button_timestop, 2, 0, 2, 1);
         grid.attach (button_addtask, 4, 0, 2, 1);
         grid.attach (button_addsubtask, 6, 0, 2, 1);
+        grid.attach (button_delete, 8, 0, 2, 1);
         
         main_window.default_height = 300;
         main_window.default_width = 300;
@@ -115,6 +135,12 @@ public class MyApp : Gtk.Application {
             rotate_button.sensitive = true;
         });*/
     }
+
+    /*private void on_selection (Gtk.TreeSelection selection) {
+        Gtk.TreeModel model;
+        Gtk.TreeIter iter;
+        if(selection.get_selected (out model, out iter)
+    }*/
 
     public static int main (string[] args) {
         var app = new MyApp ();
