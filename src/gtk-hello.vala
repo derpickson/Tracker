@@ -23,6 +23,7 @@ public class MyApp : Gtk.Application {
 
     public Pango.Alignment align {get;set;}
     public bool justify {get;set;}
+    //public SelectionMode mode { set; get; }
     public MyApp () {
         Object (
             application_id: ("com.github.derpickson.derpickson"),
@@ -32,6 +33,7 @@ public class MyApp : Gtk.Application {
 
     protected override void activate () {
         var main_window = new Gtk.ApplicationWindow (this);
+        var scrolled_window = new Gtk.ScrolledWindow (null, null);
         var grid = new Gtk.Grid ();
         var button_timestart = new Gtk.Button.with_label (_("Start Time"));
         var button_timestop = new Gtk.Button.with_label (_("Stop Time"));
@@ -39,6 +41,8 @@ public class MyApp : Gtk.Application {
         var button_addsubtask = new Gtk.Button.with_label (_("Add New Subtask"));
         var button_delete = new Gtk.Button.with_label (_("Delete"));
         
+        //Gtk.MessageDialog msg = new Gtk.MessageDialog (this, Gtk.DialogFlags.MODAL, Gtk.MessageType.WARNING, Gtk.ButtonsType.OK_CANCEL, "My message!");
+        //msg.show ();
         Gtk.ListStore list_store = new Gtk.ListStore(3, typeof (string), typeof (string), typeof(string));
         Gtk.TreeIter iter;
         Gtk.TreeView view = new Gtk.TreeView.with_model (list_store);
@@ -51,6 +55,8 @@ public class MyApp : Gtk.Application {
         view.insert_column_with_attributes (-1, "Time", cell, "text", 2);
         view.get_column (0).min_width = 75;
         view.get_column (1).min_width = 100;
+        //var selection = new Gtk.TreeSelection();
+        //selection.get_selected(out view, out iter);
 
         list_store.append (out iter);
         list_store.set (iter, 0, "Create Tracker App", 1, "", 2, "");
@@ -76,6 +82,7 @@ public class MyApp : Gtk.Application {
         });
         button_addsubtask.clicked.connect (() => {
             var name = "name";
+            
             //view.get_selection().changed.connect (name);
             list_store.append (out iter);
             list_store.set (iter, 1, name);
@@ -84,8 +91,13 @@ public class MyApp : Gtk.Application {
         grid.row_spacing = 6;
         grid.column_spacing = 6;
         grid.margin = 12;
+        //scrolled_window.set_border_width (10);
+        scrolled_window.set_min_content_height (150);
+        scrolled_window.set_kinetic_scrolling (true);
 
-        grid.attach (view, 0, 1, 10, 1);
+        grid.attach (scrolled_window, 0, 1, 10, 10);
+        scrolled_window.add (view);
+        //grid.attach (view, 0, 1, 10, 1);
         grid.attach (button_timestart, 0, 0, 2, 1);
         grid.attach (button_timestop, 2, 0, 2, 1);
         grid.attach (button_addtask, 4, 0, 2, 1);
@@ -93,9 +105,12 @@ public class MyApp : Gtk.Application {
         grid.attach (button_delete, 8, 0, 2, 1);
         
         main_window.default_height = 300;
-        main_window.default_width = 300;
+        main_window.default_width = 600;
         main_window.title = (_("Tracker"));
+        //grid.add (scrolled_window);
         main_window.add (grid);
+        //scrolled_window.add (grid);
+        //main_window.add (scrolled_window);
         main_window.show_all ();
 
         //var time
